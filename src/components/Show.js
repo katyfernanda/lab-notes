@@ -28,13 +28,14 @@ const Show = () => {
   useEffect(() => {
     getNotes()
   }, [])
+  //estructura de nota
   const estructureNotes = () => {
    return notes.map(note => (
       <tr key = {note.id}>
         <td>{note.id}</td>
         <td>{note.content}</td>
         <td>
-          <Link to={`/edit/${note.id}`} className='btn btn-light'>editar</Link>
+          <Link to={`/edit/${note.id}`} className='btn btn-light'>Editar</Link>
           <button onClick={() => { deleteNote(note.id)}} className='btn btn-danger'>Eliminar</button>
         </td>
       </tr>
