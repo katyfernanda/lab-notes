@@ -44,7 +44,7 @@ const Create = () => {
             Crear nota
           </Button>
         </Form>
-      </Card>        
+      </Card>
     </>
   )
 }
