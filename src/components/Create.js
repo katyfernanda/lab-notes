@@ -2,6 +2,9 @@ import React, { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import { collection, addDoc } from 'firebase/firestore'
 import { db } from '../firebaseConfig/firebase'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
 
 const Create = () => {
   const [title, setTitle] = useState('')
@@ -24,29 +27,25 @@ const Create = () => {
   }
   return (
     <>
-      <h1>Crear nota</h1>
-      <div className="card">
-        <form onSubmit={addNote}>
-          <div className="card-body">
-            <label>Título</label>
-            <input
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <label>Contenido</label>
-            <input
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            />
-          </div>
-          <div className="footerCard">
-            <button type='submit' className='btn btn-primary'>Crear nota</button>
-          </div>
-        </form>
-      </div>
+      <Card className="text-center" bg='ligth' >
+        <Card.Header>Nueva nota</Card.Header>
+        <Form onSubmit={addNote} >
+          <Form.Group className="mb-3">
+            <Card.Title><Form.Label>Título</Form.Label> </Card.Title>
+            <Form.Control type="text" required value={title}
+              onChange={(e) => setTitle(e.target.value)} />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Card.Title><Form.Label>Contenido</Form.Label></Card.Title>
+            <Form.Control as="textarea" style={{ height: '100px' }} required value={content}
+              onChange={(e) => setContent(e.target.value)} />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Crear nota
+          </Button>
+        </Form>
+      </Card>        
     </>
-
-
   )
 }
 export default Create
