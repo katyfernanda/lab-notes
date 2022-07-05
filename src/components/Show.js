@@ -30,39 +30,47 @@ const Show = () => {
   }, [])
   //estructura de nota
   const estructureNotes = () => {
-   return notes.map(note => (
-      <tr key = {note.id}>
-        <td>{note.id}</td>
-        <td>{note.content}</td>
-        <td>
-          <Link to={`/edit/${note.id}`} className='btn btn-light'>Editar</Link>
-          <button onClick={() => { deleteNote(note.id)}} className='btn btn-danger'>Eliminar</button>
-        </td>
-      </tr>
+    return notes.map(note => (
+      <div key={note.id}>
+        <div className="card text-bg-secondary mb-3">
+          <div className="card-body">
+            <h5 className="card-title">{note.title}</h5>
+            <p className="card-text">{note.content}</p>
+          </div>
+          <div className="card-footer" >
+            <small className="text-muted">Ultima edición: {note.day}, {note.hour}</small>
+            <div className="footerCard">
+              <div class="btn-group btn-group-sm" role="group" >
+                <Link to={`/edit/${note.id}`} className='btn btn-outline-primary'>Editar</Link>
+                <button onClick={() => { deleteNote(note.id) }} className="btn btn-danger " >Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     ))
   }
+
+  // const estructureNotes = () => {
+  //  return notes.map(note => (
+  //     <tr key = {note.id}>
+  //       <td>{note.id}</td>
+  //       <td>{note.content}</td>
+  //       <td>
+  //         <Link to={`/edit/${note.id}`} className='btn btn-light'>Editar</Link>
+  //         <button onClick={() => { deleteNote(note.id)}} className='btn btn-danger'>Eliminar</button>
+  //       </td>
+  //     </tr>
+  //   ))
+  // }
+
   //6 - se devuelve la vista
   return (
     <>
       <div>
         <Link to='/create' className='btn btn-outline-secondary'>Create</Link>
       </div>
-      {notes.forEach(note => {
-        <div>{note.id}</div>
-      })
-      }
-      <table className='table table-dark table-hover'>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>Contenido</th>
-            <th>Botones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {estructureNotes()}
-        </tbody>
-      </table>
+      {estructureNotes()}
     </>
   )
 }
