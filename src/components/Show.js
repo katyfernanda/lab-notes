@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { collection, getDocs, getDoc, deleteDoc, doc } from 'firebase/firestore'
 import { db } from '../firebaseConfig/firebase'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Accordion } from 'react-bootstrap';
 import './Show.css';
 
 const Show = () => {
@@ -38,7 +39,18 @@ const Show = () => {
             <p className="card-text">{note.content}</p>
           </div>
           <div className="card-footer" >
-            <small className="text-muted">Ultima edición: {note.day}</small>
+            <Accordion defaultActiveKey="0">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
+                  <small className="text-muted">
+                    Última edición: {note.day}, {note.hour}
+                  </small>
+                </Accordion.Header>
+                <Accordion.Body>
+                  {note.lastEdition}
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
             <div className="footerCard">
               <div className="btn-group btn-group-sm" role="group" >
                 <Link to={`/edit/${note.id}`} className='btn btn-outline-primary'>Editar</Link>
@@ -50,19 +62,6 @@ const Show = () => {
       </div>
     ))
   }
-
-  // const estructureNotes = () => {
-  //  return notes.map(note => (
-  //     <tr key = {note.id}>
-  //       <td>{note.id}</td>
-  //       <td>{note.content}</td>
-  //       <td>
-  //         <Link to={`/edit/${note.id}`} className='btn btn-light'>Editar</Link>
-  //         <button onClick={() => { deleteNote(note.id)}} className='btn btn-danger'>Eliminar</button>
-  //       </td>
-  //     </tr>
-  //   ))
-  // }
 
   //6 - se devuelve la vista
   return (
