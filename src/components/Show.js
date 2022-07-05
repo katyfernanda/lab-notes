@@ -62,7 +62,6 @@ const Show = () => {
       </div>
     ))
   }
-
   //6 - se devuelve la vista
   return (
     <>
