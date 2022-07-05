@@ -32,15 +32,15 @@ const Show = () => {
   const estructureNotes = () => {
     return notes.map(note => (
       <div key={note.id}>
-        <div className="card text-bg-secondary mb-3">
+        <div className="card">
           <div className="card-body">
             <h5 className="card-title">{note.title}</h5>
             <p className="card-text">{note.content}</p>
           </div>
           <div className="card-footer" >
-            <small className="text-muted">Ultima edición: {note.day}, {note.hour}</small>
+            <small className="text-muted">Ultima edición: {note.day}</small>
             <div className="footerCard">
-              <div class="btn-group btn-group-sm" role="group" >
+              <div className="btn-group btn-group-sm" role="group" >
                 <Link to={`/edit/${note.id}`} className='btn btn-outline-primary'>Editar</Link>
                 <button onClick={() => { deleteNote(note.id) }} className="btn btn-danger " >Eliminar</button>
               </div>
