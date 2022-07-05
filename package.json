@@ -26,7 +26,9 @@
       "react-app",
       "react-app/jest"
     ],
-    "ignorePatterns": [".env"]
+    "ignorePatterns": [
+      ".env"
+    ]
   },
   "browserslist": {
     "production": [
