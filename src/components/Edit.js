@@ -22,8 +22,8 @@ const Edit = () => {
     e.preventDefault()
     const note = doc(db, 'notes', id)
     const data = {
-      title: e.target.elements.title.value,
-      content: e.target.elements.content.value,
+      title: formTitle,
+      content: formContent,
       lastEdition: content,
       lastTitle: title,
       day: date.toLocaleDateString(),
