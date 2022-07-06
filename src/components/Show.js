@@ -5,6 +5,7 @@ import { db } from '../firebaseConfig/firebase'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Accordion } from 'react-bootstrap';
 import './Show.css';
+import CardGroup from 'react-bootstrap/CardGroup';
 
 const Show = () => {
   //1 - configurar los hooks
@@ -29,6 +30,26 @@ const Show = () => {
   useEffect(() => {
     getNotes()
   }, [])
+  //estructura condicional
+  const estructureLastEdition = (lastEdition, lastTitle) => {
+    if ((lastEdition && lastTitle !==undefined)&&(lastEdition.length > 0 || lastTitle.length > 0)) {
+      console.log(lastEdition, lastTitle)
+      return (<Accordion defaultActiveKey="1">
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>
+            <small className="text-muted">
+              Contenido anterior
+            </small>
+          </Accordion.Header>
+          <Accordion.Body>
+            <small><strong><p>{lastTitle}</p></strong></small>
+            <small><p>{lastEdition}</p></small>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+      )
+    }
+  }
   //estructura de nota
   const estructureNotes = () => {
     return notes.map(note => (
@@ -37,20 +58,12 @@ const Show = () => {
           <div className="card-body">
             <h5 className="card-title">{note.title}</h5>
             <p className="card-text">{note.content}</p>
+            <small className="text-muted">
+              Última edición: {note.day}, {note.hour}
+            </small>
           </div>
           <div className="card-footer" >
-            <Accordion defaultActiveKey="0">
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>
-                  <small className="text-muted">
-                    Última edición: {note.day}, {note.hour}
-                  </small>
-                </Accordion.Header>
-                <Accordion.Body>
-                  {note.lastEdition}
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
+            {estructureLastEdition(note.lastEdition, note.lastTitle)}
             <div className="footerCard">
               <div className="btn-group btn-group-sm" role="group" >
                 <Link to={`/edit/${note.id}`} className='btn btn-outline-primary'>Editar</Link>
@@ -68,7 +81,9 @@ const Show = () => {
       <div>
         <Link to='/create' className='btn btn-outline-secondary'>Create</Link>
       </div>
+      <CardGroup>
       {estructureNotes()}
+      </CardGroup>
     </>
   )
 }
