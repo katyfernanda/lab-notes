@@ -5,6 +5,7 @@ import { db } from '../firebaseConfig/firebase'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
+import { Link } from 'react-router-dom'
 
 const Create = () => {
   const [title, setTitle] = useState('')
@@ -16,6 +17,7 @@ const Create = () => {
     title: title,
     content: content,
     lastEdition: '',
+    lastTitle: '',
     day: date.toLocaleDateString(),
     hour: date.toLocaleTimeString()
   }
@@ -27,6 +29,9 @@ const Create = () => {
   }
   return (
     <>
+      <div>
+        <Link to='/' className='btn btn-outline-secondary'>Notas</Link>
+      </div>
       <Card className="text-center" bg='ligth' >
         <Card.Header>Nueva nota</Card.Header>
         <Form onSubmit={addNote} >
