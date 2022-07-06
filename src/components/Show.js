@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { collection, getDocs, getDoc, deleteDoc, doc } from 'firebase/firestore'
+import { collection, getDocs, getDoc, deleteDoc, doc, query, orderBy } from 'firebase/firestore'
 import { db } from '../firebaseConfig/firebase'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Accordion } from 'react-bootstrap';
@@ -12,9 +12,10 @@ const Show = () => {
   const [notes, setNotes] = useState([])
   //2 - referenciamos a la DB firestores
   const notesCollection = collection(db, 'notes')
+  const notesCollectionOrder=query(notesCollection, orderBy('day', 'desc'), orderBy('hour', 'desc'))
   //3 - function para mostrar todos los docs
   const getNotes = async () => {
-    const querySnapshot = await getDocs(notesCollection)
+    const querySnapshot = await getDocs(notesCollectionOrder)
     const arrayData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
     setNotes(arrayData)
     console.log(arrayData);
