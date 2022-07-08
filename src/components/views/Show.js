@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { collection, getDocs, getDoc, deleteDoc, doc, query, orderBy } from 'firebase/firestore'
-import { db } from '../firebaseConfig/firebase'
+import { collection, getDocs, deleteDoc, doc, query, orderBy } from 'firebase/firestore'
+import { db } from '../../firebaseConfig/firebase'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Accordion } from 'react-bootstrap';
+import LastEdition from'../utils/LastEdition'; 
 import './Show.css';
 import CardGroup from 'react-bootstrap/CardGroup';
 
@@ -31,26 +31,6 @@ const Show = () => {
   useEffect(() => {
     getNotes()
   }, [])
-  //estructura condicional
-  const estructureLastEdition = (lastEdition, lastTitle) => {
-    if ((lastEdition && lastTitle !==undefined)&&(lastEdition.length > 0 || lastTitle.length > 0)) {
-      console.log(lastEdition, lastTitle)
-      return (<Accordion defaultActiveKey="1">
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>
-            <small className="text-muted">
-              Contenido anterior
-            </small>
-          </Accordion.Header>
-          <Accordion.Body>
-            <small><strong><p>{lastTitle}</p></strong></small>
-            <small><p>{lastEdition}</p></small>
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
-      )
-    }
-  }
   //estructura de nota
   const estructureNotes = () => {
     return notes.map(note => (
@@ -64,7 +44,7 @@ const Show = () => {
             </small>
           </div>
           <div className="card-footer" >
-            {estructureLastEdition(note.lastEdition, note.lastTitle)}
+            {LastEdition(note.lastEdition, note.lastTitle)}
             <div className="footerCard">
               <div className="btn-group btn-group-sm" role="group" >
                 <Link to={`/edit/${note.id}`} className='btn btn-outline-primary'>Editar</Link>
