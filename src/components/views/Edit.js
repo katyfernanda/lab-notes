@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { getDoc, updateDoc, doc } from "firebase/firestore"
-import { db } from "../firebaseConfig/firebase"
+import { db } from "../../firebaseConfig/firebase"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
@@ -51,7 +51,7 @@ const Edit = () => {
   }, [])
 
   return (
-    <>
+  <div>
       <div>
         <Link to='/' className='btn btn-outline-secondary'>Notas</Link>
       </div>
@@ -77,7 +77,8 @@ const Edit = () => {
           </Button>
         </Form>
       </Card>
-    </>
+      </div>
+    
   )
 }
 
