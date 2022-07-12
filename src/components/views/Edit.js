@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom'
 
 const Edit = () => {
   const user = JSON.parse(localStorage.getItem('currentUser'))
-  console.log(user.uid)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [formTitle, setFormTitle] = useState('')
@@ -19,7 +18,6 @@ const Edit = () => {
   const { id } = useParams()
 
   const update = async (e) => {
-    console.log(e)
     const date = new Date()
     e.preventDefault()
     const note = doc(db, 'notes', id)
@@ -37,7 +35,6 @@ const Edit = () => {
   }
   const getNoteById = async (id) => {
     const note = await getDoc(doc(db, 'notes', id))
-    console.log(note.data().uid)
     if (note.data() !== undefined && note.data().uid === user.uid) {
       const { title, content } = note.data()
       setTitle(title)
@@ -54,7 +51,7 @@ const Edit = () => {
   }, [])
 
   return (
-  <div>
+    <div>
       <div>
         <Link to='/myNotes' className='btn btn-outline-secondary'>Notas</Link>
       </div>
@@ -80,8 +77,8 @@ const Edit = () => {
           </Button>
         </Form>
       </Card>
-      </div>
-    
+    </div>
+
   )
 }
 

@@ -10,7 +10,6 @@ import { useAuth } from "../../context/authContext"
 
 const Create = () => {
   const user = JSON.parse(localStorage.getItem('currentUser'))
-  console.log(user.uid)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const navigate = useNavigate()
@@ -23,7 +22,7 @@ const Create = () => {
     lastTitle: '',
     day: date.toLocaleDateString(),
     hour: date.toLocaleTimeString(),
-    uid: user.uid, 
+    uid: user.uid,
   }
 
   const addNote = async (e) => {

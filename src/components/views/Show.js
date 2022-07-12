@@ -13,14 +13,12 @@ import { useAuth } from '../../context/authContext';
 const Show = () => {
   const navigate = useNavigate()
   const user = JSON.parse(localStorage.getItem('currentUser'))
-  console.log(user.uid)
 
   const { logOut } = useAuth()
   const handleLogOut = () => {
     logOut()
     navigate('/')
   }
-
   //1 - configurar los hooks
   const [notes, setNotes] = useState([])
   //2 - referenciamos a la DB firestores
@@ -31,11 +29,9 @@ const Show = () => {
     const querySnapshot = await getDocs(notesCollectionOrder)
     const arrayData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
     setNotes(arrayData)
-    console.log(arrayData);
   }
   //4 - function para eliminar un doc
   const deleteNote = async (id) => {
-    console.log(id)
     const noteDoc = doc(db, 'notes', id);
     await deleteDoc(noteDoc)
     getNotes()
