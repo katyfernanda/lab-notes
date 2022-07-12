@@ -9,7 +9,7 @@ import { db } from '../../firebaseConfig/firebase'
 import { useAuth } from "../../context/authContext"
 
 const Create = () => {
-  const { user } = useAuth()
+  const user = JSON.parse(localStorage.getItem('currentUser'))
   console.log(user.uid)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
@@ -23,18 +23,18 @@ const Create = () => {
     lastTitle: '',
     day: date.toLocaleDateString(),
     hour: date.toLocaleTimeString(),
-    uid: user
+    uid: user.uid, 
   }
 
   const addNote = async (e) => {
     e.preventDefault()
     await addDoc(notesCollection, data)
-    navigate('/')
+    navigate('/myNotes')
   }
   return (
     <>
       <div>
-        <Link to='/notes' className='btn btn-outline-secondary'>Notas</Link>
+        <Link to='/myNotes' className='btn btn-outline-secondary'>Notas</Link>
       </div>
       <Card className="text-center" bg='ligth' >
         <Card.Header>Nueva nota</Card.Header>

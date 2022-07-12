@@ -8,6 +8,8 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
 const Edit = () => {
+  const user = JSON.parse(localStorage.getItem('currentUser'))
+  console.log(user.uid)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [formTitle, setFormTitle] = useState('')
@@ -28,22 +30,22 @@ const Edit = () => {
       lastTitle: title,
       day: date.toLocaleDateString(),
       hour: date.toLocaleTimeString(),
+      uid: user.uid,
     }
     await updateDoc(note, data)
-    navigate('/')
+    navigate('/myNotes')
   }
   const getNoteById = async (id) => {
     const note = await getDoc(doc(db, 'notes', id))
     if (note.data() !== undefined) {
       const { title, content } = note.data()
-      console.log(note.data().lastEdition.length)
       setTitle(title)
       setContent(content)
       setFormContent(content)
       setFormTitle(title)
     } else {
       console.error('no existe esta nota que trataste de meter por el url')
-      navigate('/')
+      navigate('/myNotes')
     }
   }
   useEffect(() => {
@@ -53,7 +55,7 @@ const Edit = () => {
   return (
   <div>
       <div>
-        <Link to='/' className='btn btn-outline-secondary'>Notas</Link>
+        <Link to='/myNotes' className='btn btn-outline-secondary'>Notas</Link>
       </div>
       <Card className="text-center" bg='ligth' >
         <Card.Header>Editar nota</Card.Header>

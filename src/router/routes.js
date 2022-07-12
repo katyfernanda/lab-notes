@@ -6,8 +6,13 @@ import Register from '../components/views/Register'
 import Show from '../components/views/Show'
 import Create from '../components/views/Create'
 import Edit from '../components/views/Edit'
+import { useEffect } from 'react'
 
-const routes = () => {
+const Routes2 = () => {
+  useEffect(()=>{
+    console.log('hola')
+  }, [])
+
   return (
     <div>
       <BrowserRouter>
@@ -15,7 +20,7 @@ const routes = () => {
           <Route path='/' element={<Home/>} />
           <Route path='/login' element = {<Login/>} />
           <Route path='/register' element={<Register/>} />
-          <Route path='/notes' element={<Show/>} />
+          <Route path='/myNotes' element={<Show/>} />
           <Route path='/create' element={<Create/>} />
           <Route path='/edit/:id' element={<Edit/>} />
         </Routes>
@@ -23,4 +28,4 @@ const routes = () => {
     </div>
   )
 }
-export default routes
+export default Routes2

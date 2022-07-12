@@ -31,7 +31,7 @@ const Login = () => {
     try {
       const response = await login(user.email, user.password)
       console.log(response)
-      navigate('/notes')
+      navigate('/myNotes')
     } catch (error) {
       console.log(error.code)
       ifError(error.code)
@@ -42,7 +42,7 @@ const Login = () => {
     try {
       const response = await google()
       console.log(response)
-      navigate('/notes')
+      navigate('/myNotes')
     } catch (error) {
       console.log(error)
     }

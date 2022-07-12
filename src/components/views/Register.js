@@ -25,7 +25,7 @@ const Register = () => {
     try {
       const response = await signUp(user.email, user.password)
       console.log(response)
-      navigate('/notes')
+      navigate('/myNotes')
     } catch (error) {
       console.log(error.code)
       ifError(error.code)
