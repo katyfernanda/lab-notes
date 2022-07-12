@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from "../../context/authContext"
+import './Register.css';
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -16,9 +17,7 @@ const Register = () => {
 
   const handleChange = ({ target: { name, value } }) => setUser({ ...user, [name]: value })
   const ifError = (responseError) => {
-    return responseError === 'auth/invalid-email' ? setError('Correo inválido') : setError('Mínimo 6 dígitos en la contraseña')
-      
- 
+    return responseError === 'auth/invalid-email' ? setError('Correo inválido') : setError('Constraseña demasiado corta')
   }
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -32,8 +31,6 @@ const Register = () => {
       ifError(error.code)
     }
   }
-
-
   return (
     <>
       <div>
@@ -50,18 +47,18 @@ const Register = () => {
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Card.Title><Form.Label>Contraseña</Form.Label></Card.Title>
             <Form.Control type='password' name='password' required
-              onChange={handleChange} />
+              onChange={handleChange} placeholder='Mínimo 6 dígitos'/>
           </Form.Group>
           <Button variant="primary" type="submit">
             Registrarse
           </Button>
         </Form>
-        { error && <p >{error}</p>
+        <div className="textError">
+        { error && <p>{error}</p>
            }
-      </Card>
-      
+           </div>
+      </Card>   
     </>
-
   )
 }
 export default Register

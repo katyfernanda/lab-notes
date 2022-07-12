@@ -1,0 +1,12 @@
+.App {
+    text-align: center;
+  }
+  ::placeholder {
+    text-align: center;
+  }
+  .textError{
+    font-size: x-small;
+    color: red;
+    margin: 6px auto 6px auto;
+  }
+  
