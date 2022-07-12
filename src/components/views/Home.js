@@ -1,3 +1,4 @@
+import CarouselHome from "../utils/CarouselHome"
 import NavLinks from "../utils/Navbar"
 const Home = () => {
 
@@ -5,7 +6,8 @@ const Home = () => {
 return (
     <>
     <div>
-    {NavLinks()}
+    <NavLinks/>
+    <CarouselHome/>
     </div>
    </>
 )

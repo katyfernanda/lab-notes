@@ -1,7 +1,27 @@
+* { margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
 .card{
    max-width: 18rem;
 }
 .footerCard{
     display: flex;
     justify-content: center;
+}
+.card-group{
+    gap: 15px;
+    justify-content: center;
+}
+.linksShow{
+    max-width: 50%;
+    display: flex;
+   gap: 10px;
+    margin: 10px auto;
+}
+.containerShow{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
 }

@@ -56,8 +56,8 @@ const Show = () => {
             {LastEdition(note.lastEdition, note.lastTitle)}
             <div className="footerCard">
               <div className="btn-group btn-group-sm" role="group" >
-                <Link to={`/edit/${note.id}`} className='btn btn-outline-primary'>Editar</Link>
-                <button onClick={() => { deleteNote(note.id) }} className="btn btn-danger " >Eliminar</button>
+                <Link to={`/edit/${note.id}`} className='btn btn-outline-primary'>&#9997;</Link>
+                <button onClick={() => { deleteNote(note.id) }} className="btn btn-outline-danger " >🗑️</button>
               </div>
             </div>
           </div>
@@ -67,17 +67,15 @@ const Show = () => {
   }
   //6 - se devuelve la vista
   return (
-    <>
-      <div>
+    <div className='containerShow'>
+      <div className='linksShow'>
         <Link to='/create' className='btn btn-outline-secondary'>Create</Link>
-        <Button onClick={() => handleLogOut()}
-        >Cerrar sesión     
-        </Button>
+        <Button onClick={() => handleLogOut()}>Cerrar sesión</Button>
       </div>
       <CardGroup>
       {estructureNotes()}
       </CardGroup>
-    </>
+    </div>
   )
 }
 
