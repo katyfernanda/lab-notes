@@ -34,18 +34,15 @@ const AuthProvider = ({ children }) => {
   const logOut = async () => {
     await signOut(auth)
     console.log('Cerró Sesión')
+    localStorage.removeItem('currentUser')
   }
 
   useEffect(() => {
+    console.log('aqui useEffect')
     onAuthStateChanged(auth, currentUser => {
-      setUser(currentUser)
       localStorage.setItem('currentUser', JSON.stringify(currentUser))
-   
     })
-
   }, [])
-
-
 
   return (
     <authContext.Provider value={{ signUp, login, google, user, logOut, loading }}>

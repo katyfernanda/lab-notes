@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { collection, getDocs, deleteDoc, doc, query, orderBy } from 'firebase/firestore'
+import { collection, getDocs, deleteDoc, doc, query, orderBy, where} from 'firebase/firestore'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CardGroup from 'react-bootstrap/CardGroup';
 import { Button } from 'react-bootstrap';
@@ -12,18 +12,20 @@ import { useAuth } from '../../context/authContext';
 
 const Show = () => {
   const navigate = useNavigate()
-  console.log(JSON.parse(localStorage.getItem('currentUser')))
+  const user = JSON.parse(localStorage.getItem('currentUser'))
+  console.log(user.uid)
+
+  const { logOut } = useAuth()
   const handleLogOut = () => {
     logOut()
     navigate('/')
   }
-  const { logOut, loading } = useAuth()
 
   //1 - configurar los hooks
   const [notes, setNotes] = useState([])
   //2 - referenciamos a la DB firestores
   const notesCollection = collection(db, 'notes')
-  const notesCollectionOrder=query(notesCollection, orderBy('day', 'desc'), orderBy('hour', 'desc'))
+  const notesCollectionOrder=query(notesCollection, orderBy('day', 'desc'), orderBy('hour', 'desc'), where("uid", "==", user.uid))
   //3 - function para mostrar todos los docs
   const getNotes = async () => {
     const querySnapshot = await getDocs(notesCollectionOrder)
