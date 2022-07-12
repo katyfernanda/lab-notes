@@ -37,14 +37,15 @@ const Edit = () => {
   }
   const getNoteById = async (id) => {
     const note = await getDoc(doc(db, 'notes', id))
-    if (note.data() !== undefined) {
+    console.log(note.data().uid)
+    if (note.data() !== undefined && note.data().uid === user.uid) {
       const { title, content } = note.data()
       setTitle(title)
       setContent(content)
       setFormContent(content)
       setFormTitle(title)
     } else {
-      console.error('no existe esta nota que trataste de meter por el url')
+      console.error('no existe o no tienes acceso a la nota que trataste ingresar')
       navigate('/myNotes')
     }
   }
