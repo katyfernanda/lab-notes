@@ -13,7 +13,7 @@ const Register = () => {
   });
   const { signUp } = useAuth()
   const navigate = useNavigate()
-  const [ error, setError ] = useState('')
+  const [error, setError] = useState('')
 
   const handleChange = ({ target: { name, value } }) => setUser({ ...user, [name]: value })
   const ifError = (responseError) => {
@@ -23,11 +23,9 @@ const Register = () => {
     e.preventDefault()
     setError('')
     try {
-      const response = await signUp(user.email, user.password)
-      console.log(response)
+      await signUp(user.email, user.password)
       navigate('/myNotes')
     } catch (error) {
-      console.log(error.code)
       ifError(error.code)
     }
   }
@@ -47,17 +45,17 @@ const Register = () => {
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Card.Title><Form.Label>Contraseña</Form.Label></Card.Title>
             <Form.Control type='password' name='password' required
-              onChange={handleChange} placeholder='Mínimo 6 dígitos'/>
+              onChange={handleChange} placeholder='Mínimo 6 dígitos' />
           </Form.Group>
           <Button variant="primary" type="submit">
             Registrarse
           </Button>
         </Form>
         <div className="textError">
-        { error && <p>{error}</p>
-           }
-           </div>
-      </Card>   
+          {error && <p>{error}</p>
+          }
+        </div>
+      </Card>
     </>
   )
 }

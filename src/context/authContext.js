@@ -13,22 +13,16 @@ const useAuth = () => {
 
 const AuthProvider = ({ children }) => {
 
-  const [user, setUser] = useState('')
-  const [loading, setLoading] = useState(true)
-
   const signUp = async (email, password) => {
-    const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
-    console.log(userCredentials.user.uid)
+    await createUserWithEmailAndPassword(auth, email, password)
   }
 
   const login = async (email, password) => {
-    const userCredentials = await signInWithEmailAndPassword(auth, email, password)
-    console.log(userCredentials.user.uid)
+    await signInWithEmailAndPassword(auth, email, password)
   }
 
   const google = async () => {
-    const userCredentials = await signInWithPopup(auth, provider)
-    console.log(userCredentials.user.uid)
+    await signInWithPopup(auth, provider)
   }
 
   const logOut = async () => {
@@ -38,14 +32,13 @@ const AuthProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    console.log('aqui useEffect')
     onAuthStateChanged(auth, currentUser => {
       localStorage.setItem('currentUser', JSON.stringify(currentUser))
     })
   }, [])
 
   return (
-    <authContext.Provider value={{ signUp, login, google, user, logOut, loading }}>
+    <authContext.Provider value={{ signUp, login, google, logOut }}>
       {children}
     </authContext.Provider>
   )

@@ -29,8 +29,7 @@ const Login = () => {
     e.preventDefault()
     setError('')
     try {
-      const response = await login(user.email, user.password)
-      console.log(response)
+await login(user.email, user.password)
       navigate('/myNotes')
     } catch (error) {
       console.log(error.code)
