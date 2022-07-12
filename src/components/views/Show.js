@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { collection, getDocs, deleteDoc, doc, query, orderBy } from 'firebase/firestore'
-import { db } from '../../firebaseConfig/firebase'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LastEdition from'../utils/LastEdition'; 
-import './Show.css';
 import CardGroup from 'react-bootstrap/CardGroup';
+import { Button } from 'react-bootstrap';
+import './Show.css';
+import { db } from '../../firebaseConfig/firebase'
+import LastEdition from'../utils/LastEdition'; 
+import { useAuth } from '../../context/authContext';
+
 
 const Show = () => {
+  const navigate = useNavigate()
+  console.log(JSON.parse(localStorage.getItem('currentUser')))
+  const handleLogOut = () => {
+    logOut()
+    navigate('/')
+  }
+  const { logOut, loading } = useAuth()
+
   //1 - configurar los hooks
   const [notes, setNotes] = useState([])
   //2 - referenciamos a la DB firestores
@@ -61,6 +72,9 @@ const Show = () => {
     <>
       <div>
         <Link to='/create' className='btn btn-outline-secondary'>Create</Link>
+        <Button onClick={() => handleLogOut()}
+        >Cerrar sesión     
+        </Button>
       </div>
       <CardGroup>
       {estructureNotes()}

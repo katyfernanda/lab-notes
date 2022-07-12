@@ -6,8 +6,11 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import { db } from '../../firebaseConfig/firebase'
+import { useAuth } from "../../context/authContext"
 
 const Create = () => {
+  const { user } = useAuth()
+  console.log(user.uid)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const navigate = useNavigate()
@@ -19,7 +22,8 @@ const Create = () => {
     lastEdition: '',
     lastTitle: '',
     day: date.toLocaleDateString(),
-    hour: date.toLocaleTimeString()
+    hour: date.toLocaleTimeString(),
+    uid: user
   }
 
   const addNote = async (e) => {
@@ -30,7 +34,7 @@ const Create = () => {
   return (
     <>
       <div>
-        <Link to='/' className='btn btn-outline-secondary'>Notas</Link>
+        <Link to='/notes' className='btn btn-outline-secondary'>Notas</Link>
       </div>
       <Card className="text-center" bg='ligth' >
         <Card.Header>Nueva nota</Card.Header>

@@ -5,12 +5,13 @@ import Card from 'react-bootstrap/Card'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from "../../context/authContext"
 
+
 const Login = () => {
   const [user, setUser] = useState({
     email: '',
     password: '',
   });
-  const { login } = useAuth()
+  const { login, google } = useAuth()
   const navigate = useNavigate()
   const [error, setError] = useState('')
 
@@ -34,6 +35,16 @@ const Login = () => {
     } catch (error) {
       console.log(error.code)
       ifError(error.code)
+    }
+  }
+  const handleGoogle = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await google()
+      console.log(response)
+      navigate('/notes')
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -63,9 +74,17 @@ const Login = () => {
         {error && <p >{error}</p>
         }
       </Card>
-
+      <Card className="text-center" bg='ligth' >
+        <Card.Header>Ingresa con Google</Card.Header>
+        <Form onSubmit={handleGoogle}>
+          <Button variant="primary" type="submit">
+            GOOGLE
+          </Button>
+        </Form>
+        {error && <p >{error}</p>
+        }
+      </Card>
     </>
-
   )
 }
 
