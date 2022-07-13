@@ -5,7 +5,8 @@
 
 .card{
    max-width: 18rem;
-   border: outset;   
+   box-shadow: 1px 1px 1px 1px rgba(32,32,32,0.3);
+   border-color: #00BDE7;  
 }
 .card-footer{
     border-color: #00BDE7;
