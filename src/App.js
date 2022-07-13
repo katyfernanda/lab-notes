@@ -1,5 +1,6 @@
 import Routes2 from './router/routes';
 import { AuthProvider } from './context/authContext'
+import './index.css'
 
 function App() {
   return (

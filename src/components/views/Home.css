@@ -1,0 +1,21 @@
+section{
+    display: grid;
+    height: 85vh;
+    grid-template-columns: 70vw;
+    justify-content: center;
+}
+section div{
+    text-align: center;
+}
+.men {
+    max-height: 40%;
+}
+@media (min-width: 1024px) {
+    section {
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+    }
+    .men {
+        max-height: 60%;
+    }
+}

@@ -1,9 +1,7 @@
-body {
+body, html {
   margin: 0;
+  background-color: #EFF2FF;
 }
 #root{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  background-color: #EFF2FF;
 }
-

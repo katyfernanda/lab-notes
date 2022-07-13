@@ -1,4 +1,15 @@
-.btnSignIn{
-    border-color: #00BDE7;
+#btnSignIn{
     color: black;
+    border-color: #00BDE7;
+    box-shadow: 1px 1px 1px 1px rgba(32,32,32,0.3);
 }
+#createAccount{
+    color: white;
+    box-shadow: 1px 1px 1px 1px rgba(32,32,32,0.3);
+}
+.format{
+    margin: 20px 20px auto auto ;
+    background-color: #EFF2FF;
+}
+
+
