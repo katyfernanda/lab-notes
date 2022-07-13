@@ -5,6 +5,10 @@
 
 .card{
    max-width: 18rem;
+   border: outset;   
+}
+.card-footer{
+    border-color: #00BDE7;
 }
 .footerCard{
     display: flex;
