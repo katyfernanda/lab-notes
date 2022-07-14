@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { Link, useNavigate } from 'react-router-dom'
+import Nav from 'react-bootstrap/Nav';
 import { useAuth } from "../../context/authContext"
 import './Register.css';
 
@@ -32,22 +33,22 @@ const Register = () => {
   return (
     <>
       <div>
-        <Link to='/' className='btn btn-outline-secondary'>Home</Link>
+      <Nav.Link href="/"><Button variant="info" id='createAccount'>Volver</Button></Nav.Link>
       </div>
-      <Card className="text-center" bg='ligth' >
-        <Card.Header>Crea tu cuenta</Card.Header>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Card.Title><Form.Label>Email</Form.Label></Card.Title>
-            <Form.Control type="text" required name='email'
+      <div className="allForm">
+        <Form className='form' onSubmit={handleSubmit}>
+        <div className="containerText">
+            <div className="text">Crea una cuenta</div>
+          </div>
+          <div className="groupInputs">
+            <Form.Control type="text" className="format shadow1" placeholder="email@papitas.com" required name='email'
               onChange={handleChange} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Card.Title><Form.Label>Contraseña</Form.Label></Card.Title>
-            <Form.Control type='password' name='password' required
-              onChange={handleChange} placeholder='Mínimo 6 dígitos' />
-          </Form.Group>
-          <Button variant="primary" type="submit">
+
+         
+            <Form.Control type='password' className="format shadow1" name='password' required
+              onChange={handleChange} placeholder='contraseña desde 6 dígitos' />
+</div>
+          <Button variant="outline-info" type="submit" id='btnRegister'>
             Registrarse
           </Button>
         </Form>
@@ -55,7 +56,8 @@ const Register = () => {
           {error && <p>{error}</p>
           }
         </div>
-      </Card>
+        </div>
+
     </>
   )
 }
