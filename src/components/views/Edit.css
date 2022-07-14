@@ -1,0 +1,10 @@
+#btnUpdate{
+    box-shadow: 1px 1px 1px 1px rgba(200, 147, 147, 0.3);
+    background-color: #00BDE7;
+    color: white;
+    letter-spacing: 0.150em;   
+}
+.formEdit{
+    display: flex;
+    gap: 15px;
+}
