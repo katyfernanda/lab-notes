@@ -1,0 +1,65 @@
+Form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 60%;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.allForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 85vh;
+    justify-content: center;
+    gap: 40px;
+    letter-spacing: 0.195em;
+}
+.containerText{
+    display: table;
+    height: 38px; 
+}
+.text{
+    border: 3px solid #00BDE7;
+    background-color: white;
+    box-shadow: 1px 1px 1px 1px rgba(200, 147, 147, 0.3);
+    border-radius: 6px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.groupInputs{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.format{
+    margin-top: 0;
+}
+.shadow1{
+    box-shadow: 1px 1px 1px 1px rgba(200, 147, 147, 0.3);
+
+}
+#btnLogin{
+    box-shadow: 1px 1px 1px 1px rgba(200, 147, 147, 0.3);
+    background-color: white;
+    color: black;
+    border: 3px solid #00BDE7;
+    letter-spacing: 0.150em;
+}
+#btnGoogle{
+    box-shadow: 1px 1px 1px 1px rgba(200, 147, 147, 0.3);
+    color: white;
+    letter-spacing: 0.150em;
+}
+
+::placeholder {
+    letter-spacing: 0.195em;
+  }
+@media (min-width: 1024px) {
+    Form {
+        width: 40%;
+    }
+}
