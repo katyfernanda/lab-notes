@@ -6,14 +6,19 @@
 .card{
    max-width: 18rem;
    box-shadow: 1px 1px 1px 1px rgba(32,32,32,0.3);
-   border-color: #00BDE7;  
+   border-color: #00BDE7; 
+   border: 3px solid #00BDE7; 
 }
 .card-footer{
     border-color: #00BDE7;
+    background-color: white;
 }
 .footerCard{
     display: flex;
     justify-content: center;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 .card-group{
     gap: 15px;
@@ -30,3 +35,9 @@
     flex-direction: column;
     justify-content: center; 
 }
+#btnLogout{
+    color: white;
+    box-shadow: 1px 1px 1px 1px rgba(32,32,32,0.3);
+    letter-spacing: 0.150em;
+}
+

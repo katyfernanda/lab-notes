@@ -52,7 +52,7 @@ const Login = () => {
   return (
     <>
       <div >
-      <Nav.Link href="/"><Button variant="info" id='createAccount'>Volver</Button></Nav.Link>
+        <Nav.Link href="/"><Button variant="info" id='back'>Volver</Button></Nav.Link>
       </div>
       <div className="allForm">
         <Form className='form' onSubmit={handleSubmit}>
@@ -73,13 +73,12 @@ const Login = () => {
         }
         <Form onSubmit={handleGoogle}>
           <Button variant="info" id='btnGoogle' type="submit" >
-           Ingresa con Google
+            Ingresa con Google
           </Button>
         </Form>
         {error && <p >{error}</p>
         }
       </div>
-
     </>
   )
 }
