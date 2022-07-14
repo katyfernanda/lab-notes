@@ -7,6 +7,7 @@ section{
 section div{
     text-align: center;
 }
+
 .men {
     max-height: 40%;
 }
@@ -16,6 +17,6 @@ section div{
     grid-template-columns: 50vw 50vw;
     }
     .men {
-        max-height: 60%;
+        max-height: 50%;
     }
 }

@@ -1,9 +1,10 @@
 import { useState } from "react"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
+import Nav from 'react-bootstrap/Nav';
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from "../../context/authContext"
+import './Login.css'
 
 
 const Login = () => {
@@ -19,9 +20,9 @@ const Login = () => {
   const ifError = (responseError) => {
     if (responseError === 'auth/invalid-email') {
       setError('Correo inválido')
-    }else if(responseError === 'auth/user-not-found'){
+    } else if (responseError === 'auth/user-not-found') {
       setError('Email no registrado')
-    }else {
+    } else {
       setError('Contraseña incorrecta')
     }
   }
@@ -29,7 +30,7 @@ const Login = () => {
     e.preventDefault()
     setError('')
     try {
-await login(user.email, user.password)
+      await login(user.email, user.password)
       navigate('/myNotes')
     } catch (error) {
       console.log(error.code)
@@ -50,39 +51,35 @@ await login(user.email, user.password)
 
   return (
     <>
-      <div>
-        <Link to='/' className='btn btn-outline-secondary'>Home</Link>
+      <div >
+      <Nav.Link href="/"><Button variant="info" id='createAccount'>Volver</Button></Nav.Link>
       </div>
-      <Card className="text-center" bg='ligth' >
-        <Card.Header>Crea tu cuenta</Card.Header>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Card.Title><Form.Label>Email</Form.Label></Card.Title>
-            <Form.Control type="text" required name='email'
+      <div className="allForm">
+        <Form className='form' onSubmit={handleSubmit}>
+          <div className="containerText">
+            <div className="text">Inicio de sesión</div>
+          </div>
+          <div className="groupInputs">
+            <Form.Control type="text" className="format shadow1" placeholder="email@papitas.com" required name='email'
               onChange={handleChange} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Card.Title><Form.Label>Contraseña</Form.Label></Card.Title>
-            <Form.Control type='password' name='password' required
+            <Form.Control type='password' className="format shadow1" placeholder="contraseña" name='password' required
               onChange={handleChange} />
-          </Form.Group>
-          <Button variant="primary" type="submit">
+          </div>
+          <Button variant="outline-info" id='btnLogin' type="submit">
             Login
           </Button>
         </Form>
         {error && <p >{error}</p>
         }
-      </Card>
-      <Card className="text-center" bg='ligth' >
-        <Card.Header>Ingresa con Google</Card.Header>
         <Form onSubmit={handleGoogle}>
-          <Button variant="primary" type="submit">
-            GOOGLE
+          <Button variant="info" id='btnGoogle' type="submit" >
+           Ingresa con Google
           </Button>
         </Form>
         {error && <p >{error}</p>
         }
-      </Card>
+      </div>
+
     </>
   )
 }

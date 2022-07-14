@@ -12,7 +12,7 @@ const Home = () => {
       <section>
         <div className="content">
           <img src={takeNote} alt='logo'/>
-            <p >Anota tu nota!</p>
+            <h3>Anota tu nota!</h3>
             <p >TakeNote es el cuaderno digital para organizar tus pensamientos, descubrimientos e ideas y simplifica tu planeamiento de momentos especiales en tu vida.</p>
         </div>
         <div>

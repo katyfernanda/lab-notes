@@ -2,10 +2,13 @@
     color: black;
     border-color: #00BDE7;
     box-shadow: 1px 1px 1px 1px rgba(32,32,32,0.3);
+    background-color: white;
+    letter-spacing: 0.150em;
 }
 #createAccount{
     color: white;
     box-shadow: 1px 1px 1px 1px rgba(32,32,32,0.3);
+    letter-spacing: 0.150em;
 }
 .format{
     margin: 20px 20px auto auto ;
