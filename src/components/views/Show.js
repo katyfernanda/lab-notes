@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { collection, getDocs, deleteDoc, doc, query, orderBy, where} from 'firebase/firestore'
+import { collection, getDocs, deleteDoc, doc, query, orderBy, where } from 'firebase/firestore'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CardGroup from 'react-bootstrap/CardGroup';
 import { Button } from 'react-bootstrap';
+import Nav from 'react-bootstrap/Nav';
 import './Show.css';
 import { db } from '../../firebaseConfig/firebase'
-import LastEdition from'../utils/LastEdition'; 
+import LastEdition from '../utils/LastEdition';
 import { useAuth } from '../../context/authContext';
 
 
@@ -23,7 +24,7 @@ const Show = () => {
   const [notes, setNotes] = useState([])
   //2 - referenciamos a la DB firestores
   const notesCollection = collection(db, 'notes')
-  const notesCollectionOrder=query(notesCollection, orderBy('day', 'desc'), orderBy('hour', 'desc'), where("uid", "==", user.uid))
+  const notesCollectionOrder = query(notesCollection, orderBy('day', 'desc'), orderBy('hour', 'desc'), where("uid", "==", user.uid))
   //3 - function para mostrar todos los docs
   const getNotes = async () => {
     const querySnapshot = await getDocs(notesCollectionOrder)
@@ -52,13 +53,11 @@ const Show = () => {
               Última edición: {note.day}, {note.hour}
             </small>
           </div>
-          <div className="card-footer" >
+          <div className="card-footer changeFooter" >
             {LastEdition(note.lastEdition, note.lastTitle)}
             <div className="footerCard">
-              <div className="btn-group btn-group-sm" role="group" >
-                <Link to={`/edit/${note.id}`} className='btn btn-outline-primary'>✏️</Link>
-                <button onClick={() => { deleteNote(note.id) }} className="btn btn-outline-danger " >🗑️</button>
-              </div>
+              <button onClick={() => { deleteNote(note.id) }} className="btn btn-outline-danger " >🗑️</button>
+              <Link to={`/edit/${note.id}`} className='btn btn-outline-primary'>✏️</Link>
             </div>
           </div>
         </div>
@@ -68,12 +67,11 @@ const Show = () => {
   //6 - se devuelve la vista
   return (
     <div className='containerShow'>
-      <div className='linksShow'>
-        <Link to='/create' className='btn btn-outline-secondary'>Create</Link>
-        <Button onClick={() => handleLogOut()}>Cerrar sesión</Button>
+      <div>
+        <Nav.Link><Button variant="info" id='btnLogout' onClick={() => handleLogOut()}>Cerrar sesión</Button></Nav.Link>
       </div>
       <CardGroup>
-      {estructureNotes()}
+        {estructureNotes()}
       </CardGroup>
     </div>
   )

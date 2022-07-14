@@ -58,6 +58,11 @@ Form {
 ::placeholder {
     letter-spacing: 0.195em;
   }
+  #back{
+    color: white;
+    box-shadow: 1px 1px 1px 1px rgba(32,32,32,0.3);
+    letter-spacing: 0.150em;
+  }
 @media (min-width: 1024px) {
     Form {
         width: 40%;
