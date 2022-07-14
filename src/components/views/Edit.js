@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { getDoc, updateDoc, doc } from "firebase/firestore"
-import { db } from "../../firebaseConfig/firebase"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import { Link } from 'react-router-dom'
+import Nav from 'react-bootstrap/Nav';
+import { db } from "../../firebaseConfig/firebase"
+import './Edit.css'
 
 const Edit = () => {
   const user = JSON.parse(localStorage.getItem('currentUser'))
@@ -53,30 +54,30 @@ const Edit = () => {
   return (
     <div>
       <div>
-        <Link to='/myNotes' className='btn btn-outline-secondary'>Notas</Link>
+        <Nav.Link href="/myNotes"><Button variant="info" id='createAccount'>Volver</Button></Nav.Link>
       </div>
-      <Card className="text-center" bg='ligth' >
-        <Card.Header>Editar nota</Card.Header>
-        <Form onSubmit={update} >
-          <Form.Group className="mb-3">
-            <Card.Title><Form.Label>Título</Form.Label> </Card.Title>
-            <Form.Control type="text" required value={formTitle}
-              onChange={(e) => {
-                setFormTitle(e.target.value)
-              }} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Card.Title><Form.Label>Contenido</Form.Label></Card.Title>
-            <Form.Control name='content' as="textarea" style={{ height: '100px' }} required value={formContent}
-              onChange={(e) => {
-                setFormContent(e.target.value)
-              }} />
-          </Form.Group>
-          <Button variant="primary" type="submit" >
+      <div className="allForm">
+        <Form className="formEdit" onSubmit={update} >
+          <div className="containerText">
+            <div className="text">Título</div>
+          </div>
+          <Form.Control type="text" className="shadow1" required value={formTitle}
+            onChange={(e) => {
+              setFormTitle(e.target.value)
+            }} />
+          <div className="containerText">
+            <div className="text">Contenido</div>
+          </div>
+          <Form.Control name='content' className="shadow1" as="textarea" style={{ height: '100px' }} required value={formContent}
+            onChange={(e) => {
+              setFormContent(e.target.value)
+            }} />
+          <Button variant="outline-info" type="submit" id='btnUpdate'>
             Actualizar
           </Button>
         </Form>
-      </Card>
+      </div>
+
     </div>
 
   )
