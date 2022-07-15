@@ -4,9 +4,8 @@ import { collection, addDoc } from 'firebase/firestore'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import { Link } from 'react-router-dom'
 import { db } from '../../firebaseConfig/firebase'
-import { useAuth } from "../../context/authContext"
+import NavBtnBack from "../utils/NavBtnBack"
 
 const Create = () => {
   const user = JSON.parse(localStorage.getItem('currentUser'))
@@ -32,9 +31,7 @@ const Create = () => {
   }
   return (
     <>
-      <div>
-        <Link to='/myNotes' className='btn btn-outline-secondary'>Notas</Link>
-      </div>
+      <NavBtnBack path='MyNotes'/>
       <Card className="text-center" bg='ligth' >
         <Card.Header>Nueva nota</Card.Header>
         <Form onSubmit={addNote} >

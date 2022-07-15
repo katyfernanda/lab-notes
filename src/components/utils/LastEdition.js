@@ -4,7 +4,8 @@ import { Accordion } from 'react-bootstrap';
  const LastEdition = (lastEdition, lastTitle) => {
     if ((lastEdition && lastTitle !==undefined)&&(lastEdition.length > 0 || lastTitle.length > 0)) {
       console.log(lastEdition, lastTitle)
-      return (<Accordion defaultActiveKey="1">
+      return (
+      <Accordion defaultActiveKey="1">
         <Accordion.Item eventKey="0">
           <Accordion.Header>
             <small className="text-muted">
