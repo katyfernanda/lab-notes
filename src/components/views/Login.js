@@ -1,10 +1,10 @@
 import { useState } from "react"
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Nav from 'react-bootstrap/Nav';
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from "../../context/authContext"
 import './Login.css'
+import BtnGoogleSignIn from "../utils/BtnGoogleSignIn";
+import LoginForm from "../utils/LoginForm";
+import NavBtnBack from "../utils/NavBtnBack";
 
 
 const Login = () => {
@@ -48,36 +48,12 @@ const Login = () => {
     }
   }
 
-
   return (
     <>
-      <div >
-        <Nav.Link href="/"><Button variant="info" id='back'>Volver</Button></Nav.Link>
-      </div>
+      <NavBtnBack path='/'/>
       <div className="allForm">
-        <Form className='form' onSubmit={handleSubmit}>
-          <div className="containerText">
-            <div className="text">Inicio de sesión</div>
-          </div>
-          <div className="groupInputs">
-            <Form.Control type="text" className="format shadow1" placeholder="email@papitas.com" required name='email'
-              onChange={handleChange} />
-            <Form.Control type='password' className="format shadow1" placeholder="contraseña" name='password' required
-              onChange={handleChange} />
-          </div>
-          <Button variant="outline-info" id='btnLogin' type="submit">
-            Login
-          </Button>
-        </Form>
-        {error && <p >{error}</p>
-        }
-        <Form onSubmit={handleGoogle}>
-          <Button variant="info" id='btnGoogle' type="submit" >
-            Ingresa con Google
-          </Button>
-        </Form>
-        {error && <p >{error}</p>
-        }
+        <LoginForm handleSubmit={handleSubmit} handleChange={handleChange} error={error} />
+        <BtnGoogleSignIn handleGoogle={handleGoogle} />
       </div>
     </>
   )

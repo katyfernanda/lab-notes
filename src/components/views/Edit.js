@@ -3,10 +3,9 @@ import { useNavigate, useParams } from "react-router-dom"
 import { getDoc, updateDoc, doc } from "firebase/firestore"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
-import Nav from 'react-bootstrap/Nav';
 import { db } from "../../firebaseConfig/firebase"
 import './Edit.css'
+import NavBtnBack from "../utils/NavBtnBack"
 
 const Edit = () => {
   const user = JSON.parse(localStorage.getItem('currentUser'))
@@ -53,9 +52,7 @@ const Edit = () => {
 
   return (
     <div>
-      <div>
-        <Nav.Link href="/myNotes"><Button variant="info" id='createAccount'>Volver</Button></Nav.Link>
-      </div>
+      <NavBtnBack path='MyNotes'/>
       <div className="allForm">
         <Form className="formEdit" onSubmit={update} >
           <div className="containerText">

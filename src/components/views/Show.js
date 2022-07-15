@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { collection, getDocs, deleteDoc, doc, query, orderBy, where } from 'firebase/firestore'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CardGroup from 'react-bootstrap/CardGroup';
-import { Button } from 'react-bootstrap';
-import Nav from 'react-bootstrap/Nav';
 import './Show.css';
 import { db } from '../../firebaseConfig/firebase'
 import LastEdition from '../utils/LastEdition';
 import { useAuth } from '../../context/authContext';
+import EstructureNotes from '../utils/EstructureNotes'
+import BtnLogOut from '../utils/BtnLogOut';
 
 
 const Show = () => {
@@ -41,38 +40,12 @@ const Show = () => {
   useEffect(() => {
     getNotes()
   }, [])
-  //estructura de nota
-  const estructureNotes = () => {
-    return notes.map(note => (
-      <div key={note.id}>
-        <div className="card ">
-          <div className="card-body">
-            <h5 className="card-title">{note.title}</h5>
-            <p className="card-text">{note.content}</p>
-            <small className="text-muted">
-              Última edición: {note.day}, {note.hour}
-            </small>
-          </div>
-          <div className="card-footer changeFooter" >
-            {LastEdition(note.lastEdition, note.lastTitle)}
-            <div className="footerCard">
-              <button onClick={() => { deleteNote(note.id) }} className="btn btn-outline-danger " >🗑️</button>
-              <Link to={`/edit/${note.id}`} className='btn btn-outline-primary'>✏️</Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    ))
-  }
+
   //6 - se devuelve la vista
   return (
     <div className='containerShow'>
-      <div>
-        <Nav.Link><Button variant="info" id='btnLogout' onClick={() => handleLogOut()}>Cerrar sesión</Button></Nav.Link>
-      </div>
-      <CardGroup>
-        {estructureNotes()}
-      </CardGroup>
+      <BtnLogOut handleLogOut={handleLogOut}/>
+      <EstructureNotes notes={notes} LastEdition={LastEdition} deleteNote={deleteNote} />
     </div>
   )
 }
