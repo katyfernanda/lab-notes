@@ -35,6 +35,10 @@
     flex-direction: column;
     justify-content: center; 
 }
+.btnNav{
+    display: flex;
+    justify-content: space-between;
+}
 #btnLogout{
     color: white;
     box-shadow: 1px 1px 1px 1px rgba(32,32,32,0.3);

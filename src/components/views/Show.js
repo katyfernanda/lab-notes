@@ -8,6 +8,7 @@ import LastEdition from '../utils/LastEdition';
 import { useAuth } from '../../context/authContext';
 import EstructureNotes from '../utils/EstructureNotes'
 import BtnLogOut from '../utils/BtnLogOut';
+import NavBtnBack from '../utils/NavBtnBack';
 
 
 const Show = () => {
@@ -44,7 +45,10 @@ const Show = () => {
   //6 - se devuelve la vista
   return (
     <div className='containerShow'>
+      <div className='btnNav'>
       <BtnLogOut handleLogOut={handleLogOut}/>
+      <NavBtnBack path='/create' />
+      </div>
       <EstructureNotes notes={notes} LastEdition={LastEdition} deleteNote={deleteNote} />
     </div>
   )
